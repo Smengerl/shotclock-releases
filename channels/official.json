@@ -1,0 +1,16 @@
+{
+ "format": 1,
+ "channel": "official",
+ "version": "2.1.0",
+ "summary": "Works with `v2.0.0` units (same MAJOR version). From this release on, updates come from the publ",
+ "images": [
+  {
+   "hw": "mps3-64",
+   "url": "https://smengerl.github.io/shotclock-releases/bin/2.1.0/shotclock-mps3-64-2.1.0.bin",
+   "size": 1687808,
+   "sha256": "356c188111117b0221a36bf53d7e64b47192e4c02c3bb4e2431bd01e21397be3",
+   "min_version": "2.0.0-0"
+  }
+ ],
+ "notes_url": "https://smengerl.github.io/shotclock-releases/notes.html#v2.1.0"
+}
