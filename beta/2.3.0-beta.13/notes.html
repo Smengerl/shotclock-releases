@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Beta 2.3.0-beta.5</title>
+<title>Beta 2.3.0-beta.13</title>
 <style>
 :root {
   --bg: #000000; --surface: #141414; --raised: #1f1f1f; --line: #5c5c5c;
@@ -81,12 +81,18 @@ body{margin:0;background:var(--bg)}
 <body>
 <div class="pg"><div class="in">
 <div class="bub">
-<div class="ttl"><a class="back" href="../index.html" aria-label="Beta">‹</a><b>2.3.0-beta.5</b><span class="chip">BETA</span></div>
-<div class="meta">Built from main · 3 commits since v2.2.0. A test build for units with engineering mode on. It is not an official release; the official release 2.3.0 replaces it.</div>
+<div class="ttl"><a class="back" href="../index.html" aria-label="Beta">‹</a><b>2.3.0-beta.13</b><span class="chip">BETA</span></div>
+<div class="meta">Built from main · 9 commits since v2.2.0. A test build for units with engineering mode on. It is not an official release; the official release 2.3.0 replaces it.</div>
 </div>
 <div class="sec">
-<div class="sh"><b>Changes since v2.2.0</b><span class="n">3</span></div>
+<div class="sh"><b>Changes since v2.2.0</b><span class="n">9</span></div>
 <div class="tl">
+<div class="c"><span class="ty fix">fix</span><span class="tx">ship factory restarts the unit after --backup/--erase, the touch survives a re-enumerating port (#168)</span></div>
+<div class="c"><span class="ty">docs</span><span class="tx">H15 uses ship factory --backup and --erase (#168)</span></div>
+<div class="c"><span class="ty">feat</span><span class="tx">ship factory --backup and --erase, timeouts, package check (#168)</span></div>
+<div class="c"><span class="ty">docs</span><span class="tx">S5 skipped by the owner for v2.2.0</span></div>
+<div class="c"><span class="ty">docs</span><span class="tx">H15 run on the red unit, register entry of the factory write</span></div>
+<div class="c"><span class="ty">docs</span><span class="tx">v2.2.0 on the bench, S4 and the rows H14 and H16; unit addresses in bench.toml</span></div>
 <div class="c"><span class="ty">ci</span><span class="tx">valid YAML in the beta step name</span></div>
 <div class="c"><span class="ty">ci</span><span class="tx">beta job runs the checks of ci.yml, the stages S0 to S2 stay local</span></div>
 <div class="c"><span class="ty fix">fix</span><span class="tx">bench verdict, candidates never publish, beta workflow packages and manual trigger</span></div>
