@@ -1,0 +1,16 @@
+{
+ "format": 1,
+ "channel": "beta",
+ "version": "2.3.0-beta.5",
+ "summary": "Test build of main since v2.2.0, for units with engineering mode",
+ "images": [
+  {
+   "hw": "mps3-64",
+   "url": "https://smengerl.github.io/shotclock-releases/beta/2.3.0-beta.5/shotclock-mps3-64-2.3.0-beta.5.bin",
+   "size": 1690784,
+   "sha256": "51886abd4552c3607969f8e65d554251f034fda2ac262a8c7501bdc6e52831fa",
+   "min_version": "2.0.0-0"
+  }
+ ],
+ "notes_url": "https://smengerl.github.io/shotclock-releases/beta/2.3.0-beta.5/notes.html"
+}
