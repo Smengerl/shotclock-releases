@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Release notes v2.2.0</title>
+<style>
+:root {
+  --bg: #000000; --surface: #141414; --raised: #1f1f1f; --line: #5c5c5c;
+  --text: #ffffff; --muted: #d0d0d0; --accent: #ff9a1a; --on-accent: #000000;
+  --danger: #ff6b6b; --ok: #7cff6b;
+  --guide: #b48cff; --on-guide: #000000;   
+  --shadow: #5c5c5c; --shadow-size: 4px;   
+  --unit: #ff4d4d;   
+  --font-ui: system-ui, sans-serif;   
+  --font-num: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --num-slant: normal;
+  --radius: 12px; --stroke: 1.5px; --label-case: none;
+  
+  --fs-12: 12px; --fs-13: 13px; --fs-14: 14px; --fs-15: 15px; --fs-16: 16px; --fs-18: 18px; --fs-24: 24px; --fs-28: 28px;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+  --touch: 44px; --btn: 80px;
+  
+  --bubble-shadow: drop-shadow(var(--shadow-size) var(--shadow-size) 0 var(--shadow));
+}
+html{touch-action:pan-x pan-y}
+body{margin:0;background:var(--bg)}
+.pg{box-sizing:border-box;min-height:100vh;background:var(--bg);color:var(--text);font:var(--fs-15)/1.5 var(--font-ui);padding:20px var(--sp-4) 40px}
+.pg *{box-sizing:border-box}
+.pg .in{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+.pg a{color:var(--accent)}
+.pg code{font-size:var(--fs-13);background:var(--bg);padding:1px 5px;border-radius:4px}
+.pg .hd{font-size:var(--fs-13);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pg .bub{background:var(--surface);border:var(--stroke) solid var(--line);border-radius:20px;filter:var(--bubble-shadow);overflow:hidden}
+.pg .ttl{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-3) var(--sp-4);border-bottom:var(--stroke) solid var(--line)}
+.pg .ttl b{flex:1;font-size:var(--fs-18)}
+.pg .ttl .n{font-size:var(--fs-13);color:var(--muted)}
+.pg .ttl.col{display:block;padding:14px var(--sp-4)}
+.pg .ttl.col b{display:block}
+.pg .ttl.col span{font-size:var(--fs-13);color:var(--muted)}
+.pg .back{display:flex;align-items:center;justify-content:center;width:var(--touch);height:var(--touch);margin:-8px 0 -8px -12px;color:var(--text);text-decoration:none;font-size:22px}
+.pg .meta{padding:var(--sp-3) var(--sp-4);font-size:var(--fs-14);color:var(--muted)}
+.pg .meta+.meta{padding-top:0}
+.pg .sic{flex:none;color:var(--accent)}
+.pg .sic.warn{color:var(--danger)}
+.pg .sic.ok{color:var(--ok)}
+.pg .sec{display:flex;flex-direction:column;gap:var(--sp-3)}
+.pg .sh{display:flex;align-items:center;gap:var(--sp-3);padding:0 var(--sp-1)}
+.pg .sh b{flex:1;font-size:var(--fs-18)}
+.pg .sh .n{font-size:var(--fs-13);color:var(--muted)}
+.pg .list{display:flex;flex-direction:column;gap:10px}
+.pg .it{padding:14px;background:var(--raised);border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-14);overflow-wrap:anywhere}
+.pg .it b{display:block;margin-bottom:2px;font-size:var(--fs-15)}
+.pg .ref,.pg .chip{display:inline-block;padding:0 var(--sp-2);border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-12);color:var(--muted)}
+.pg .ref{margin:6px 6px 0 0}
+.pg .chip{border-color:var(--accent);font-weight:600;color:var(--accent)}
+.pg .hw{padding:14px;border:var(--stroke) solid var(--ok);border-radius:var(--radius);font-size:var(--fs-14);background:var(--raised)}
+.pg .nav{display:flex;justify-content:space-between;gap:var(--sp-4);padding:0 var(--sp-1);font-size:var(--fs-14)}
+.pg .tlx{position:relative;padding:6px 0 var(--sp-2)}
+.pg .tlx:before{content:"";position:absolute;left:27px;top:30px;bottom:34px;width:var(--stroke);background:var(--line)}
+.pg .grp{padding:var(--sp-3) var(--sp-4) 2px 52px;font-size:var(--fs-12);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pg .row{position:relative;display:flex;align-items:center;gap:var(--sp-3);min-height:64px;padding:var(--sp-3) var(--sp-4) var(--sp-3) 52px;color:var(--text);text-decoration:none}
+.pg .row:before{content:"";position:absolute;left:22px;top:23px;width:11px;height:11px;border-radius:50%;background:var(--surface);border:var(--stroke) solid var(--accent)}
+.pg .row.now:before{background:var(--accent)}
+.pg .row:after{content:"";position:absolute;left:52px;right:var(--sp-4);bottom:0;border-bottom:var(--stroke) solid var(--line)}
+.pg .row.last:after{display:none}
+.pg .tx{flex:1;min-width:0}
+.pg .tx b{display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-16)}
+.pg .tx small{display:block;font-size:var(--fs-13);line-height:1.4;color:var(--muted)}
+.pg .op{flex:none;color:var(--muted)}
+.pg .foot{margin:0;font-size:var(--fs-13);color:var(--muted)}
+.pg .tl{position:relative;display:flex;flex-direction:column;gap:10px;padding-left:28px}
+.pg .tl:before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:var(--stroke);background:var(--line)}
+.pg .c{position:relative;display:flex;align-items:flex-start;gap:10px;padding:var(--sp-3);background:var(--raised);border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-14);overflow-wrap:anywhere}
+.pg .c:before{content:"";position:absolute;left:-28px;top:16px;width:11px;height:11px;border-radius:50%;background:var(--surface);border:var(--stroke) solid var(--accent)}
+.pg .ty{flex:none;width:76px;padding:0 var(--sp-2);text-align:center;border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-12);color:var(--muted)}
+.pg .ty.fix{border-color:var(--danger);color:var(--danger)}
+.pg p{margin:0}
+</style>
+</head>
+<body>
+<div class="pg"><div class="in">
+<div class="bub">
+<div class="ttl"><a class="back" href="../index.html" aria-label="All versions">‹</a><b>v2.2.0</b><span class="n">2026-11-11</span></div>
+<div class="meta">A beta channel for engineering mode, new release notes pages and fixes in the web UI. Works with <code>v2.0.0</code> and later units (same MAJOR version); units on 2.1.1 and older take this release over USB.</div>
+</div>
+<div class="sec">
+<div class="sh"><svg class="sic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><b>Highlights</b><span class="n">4</span></div>
+<div class="list"><div class="it"><b>Beta channel</b>With engineering mode on, a unit offers the last build of <code>main</code> as a second update, tagged <i>BETA</i>, and the official release as the way back. The splash shows the version and, for a beta, a <i>BETA</i> label next to <i>ENG</i>. A club unit never sees a beta.<br><span class="ref">#71</span></div>
+<div class="it"><b>Auto update goes to the next official release</b>The newest official release of the same MAJOR version that is newer than the installed one, also from a beta, never a beta itself. The guide and the hint line of the switch say so.<br><span class="ref">#71</span><span class="ref">#127</span></div>
+<div class="it"><b>New release notes pages</b>A contents page with a timeline and one page per version, in the look of the web UI; the link symbol of a unit opens the page of its version, and a beta has a page of its own with the commits since the last release.<br><span class="ref">#149</span></div>
+<div class="it"><b>The release site is laid out per channel</b><code>official/</code> and <code>beta/</code>, a folder per version with its image and notes.<br><span class="ref">#71</span><span class="ref">#149</span></div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh"><svg class="sic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><b>Fixes and changes</b><span class="n">3</span></div>
+<div class="list"><div class="it">The web UI no longer zooms on a double tap, and on an iPhone the page behind an open <i>Einstellungen</i> popup stays where it is.<br><span class="ref">#155</span><span class="ref">#157</span></div>
+<div class="it">The chips of a unit card are smaller and keep the details arrow inside the popup.<br><span class="ref">#156</span></div>
+<div class="it">For people who build: one entry point for building, testing and shipping, <code>python3 -m ship</code> (<code>docs/dev/deployment.md</code>).</div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh"><svg class="sic warn" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4"/><path d="M12 17.2v.1"/></svg><b>Known limits</b><span class="n">3</span></div>
+<div class="list"><div class="it">Units on <code>v2.1.1</code> and older read the old release manifest, which stays as it was published: they see nothing newer than 2.1.1, are updated over USB, and do not see the notes of new versions.</div>
+<div class="it">Official images are not signed (#69 is not planned): a unit trusts the TLS connection to one host and the SHA-256 of the image.</div>
+<div class="it">The connect QR code does not scan on the first try in every case.<br><span class="ref">#28</span></div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh"><svg class="sic ok" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg><b>Hardware verification</b></div>
+<div class="hw"><b>Exception:</b> this release went out without a hardware session; the owner accepted the open hardware gates on 2026-11-11. Not run on units: the rows H14 (beta on the real site, the way back), H15 (factory image on an erased unit, one rollback) and H16 (transfer rate of the page modules) of <code>docs/test/hardware.md</code>, the stages S4 and S5, and the look of the panels and the QR code (S6). What this release stands on: its firmware is the build of <code>v2.2.0-rc.2</code>, with no change to <code>firmware/</code>, <code>frontend/</code> or the texts since, and the release workflow of that candidate ran green. Unverified on real units: the beta offer and the way back, the factory image with its rollback, the splash with the <i>BETA</i> label and the transfer time of the <i>Einstellungen</i> popup.</div>
+</div>
+
+<div class="nav"><a href="../2.1.1/notes.html">‹ v2.1.1</a><span></span></div>
+</div></div>
+</body>
+</html>

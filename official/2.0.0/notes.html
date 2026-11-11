@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Release notes v2.0.0</title>
+<style>
+:root {
+  --bg: #000000; --surface: #141414; --raised: #1f1f1f; --line: #5c5c5c;
+  --text: #ffffff; --muted: #d0d0d0; --accent: #ff9a1a; --on-accent: #000000;
+  --danger: #ff6b6b; --ok: #7cff6b;
+  --guide: #b48cff; --on-guide: #000000;   
+  --shadow: #5c5c5c; --shadow-size: 4px;   
+  --unit: #ff4d4d;   
+  --font-ui: system-ui, sans-serif;   
+  --font-num: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --num-slant: normal;
+  --radius: 12px; --stroke: 1.5px; --label-case: none;
+  
+  --fs-12: 12px; --fs-13: 13px; --fs-14: 14px; --fs-15: 15px; --fs-16: 16px; --fs-18: 18px; --fs-24: 24px; --fs-28: 28px;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+  --touch: 44px; --btn: 80px;
+  
+  --bubble-shadow: drop-shadow(var(--shadow-size) var(--shadow-size) 0 var(--shadow));
+}
+html{touch-action:pan-x pan-y}
+body{margin:0;background:var(--bg)}
+.pg{box-sizing:border-box;min-height:100vh;background:var(--bg);color:var(--text);font:var(--fs-15)/1.5 var(--font-ui);padding:20px var(--sp-4) 40px}
+.pg *{box-sizing:border-box}
+.pg .in{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+.pg a{color:var(--accent)}
+.pg code{font-size:var(--fs-13);background:var(--bg);padding:1px 5px;border-radius:4px}
+.pg .hd{font-size:var(--fs-13);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pg .bub{background:var(--surface);border:var(--stroke) solid var(--line);border-radius:20px;filter:var(--bubble-shadow);overflow:hidden}
+.pg .ttl{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-3) var(--sp-4);border-bottom:var(--stroke) solid var(--line)}
+.pg .ttl b{flex:1;font-size:var(--fs-18)}
+.pg .ttl .n{font-size:var(--fs-13);color:var(--muted)}
+.pg .ttl.col{display:block;padding:14px var(--sp-4)}
+.pg .ttl.col b{display:block}
+.pg .ttl.col span{font-size:var(--fs-13);color:var(--muted)}
+.pg .back{display:flex;align-items:center;justify-content:center;width:var(--touch);height:var(--touch);margin:-8px 0 -8px -12px;color:var(--text);text-decoration:none;font-size:22px}
+.pg .meta{padding:var(--sp-3) var(--sp-4);font-size:var(--fs-14);color:var(--muted)}
+.pg .meta+.meta{padding-top:0}
+.pg .sic{flex:none;color:var(--accent)}
+.pg .sic.warn{color:var(--danger)}
+.pg .sic.ok{color:var(--ok)}
+.pg .sec{display:flex;flex-direction:column;gap:var(--sp-3)}
+.pg .sh{display:flex;align-items:center;gap:var(--sp-3);padding:0 var(--sp-1)}
+.pg .sh b{flex:1;font-size:var(--fs-18)}
+.pg .sh .n{font-size:var(--fs-13);color:var(--muted)}
+.pg .list{display:flex;flex-direction:column;gap:10px}
+.pg .it{padding:14px;background:var(--raised);border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-14);overflow-wrap:anywhere}
+.pg .it b{display:block;margin-bottom:2px;font-size:var(--fs-15)}
+.pg .ref,.pg .chip{display:inline-block;padding:0 var(--sp-2);border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-12);color:var(--muted)}
+.pg .ref{margin:6px 6px 0 0}
+.pg .chip{border-color:var(--accent);font-weight:600;color:var(--accent)}
+.pg .hw{padding:14px;border:var(--stroke) solid var(--ok);border-radius:var(--radius);font-size:var(--fs-14);background:var(--raised)}
+.pg .nav{display:flex;justify-content:space-between;gap:var(--sp-4);padding:0 var(--sp-1);font-size:var(--fs-14)}
+.pg .tlx{position:relative;padding:6px 0 var(--sp-2)}
+.pg .tlx:before{content:"";position:absolute;left:27px;top:30px;bottom:34px;width:var(--stroke);background:var(--line)}
+.pg .grp{padding:var(--sp-3) var(--sp-4) 2px 52px;font-size:var(--fs-12);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pg .row{position:relative;display:flex;align-items:center;gap:var(--sp-3);min-height:64px;padding:var(--sp-3) var(--sp-4) var(--sp-3) 52px;color:var(--text);text-decoration:none}
+.pg .row:before{content:"";position:absolute;left:22px;top:23px;width:11px;height:11px;border-radius:50%;background:var(--surface);border:var(--stroke) solid var(--accent)}
+.pg .row.now:before{background:var(--accent)}
+.pg .row:after{content:"";position:absolute;left:52px;right:var(--sp-4);bottom:0;border-bottom:var(--stroke) solid var(--line)}
+.pg .row.last:after{display:none}
+.pg .tx{flex:1;min-width:0}
+.pg .tx b{display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-16)}
+.pg .tx small{display:block;font-size:var(--fs-13);line-height:1.4;color:var(--muted)}
+.pg .op{flex:none;color:var(--muted)}
+.pg .foot{margin:0;font-size:var(--fs-13);color:var(--muted)}
+.pg .tl{position:relative;display:flex;flex-direction:column;gap:10px;padding-left:28px}
+.pg .tl:before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:var(--stroke);background:var(--line)}
+.pg .c{position:relative;display:flex;align-items:flex-start;gap:10px;padding:var(--sp-3);background:var(--raised);border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-14);overflow-wrap:anywhere}
+.pg .c:before{content:"";position:absolute;left:-28px;top:16px;width:11px;height:11px;border-radius:50%;background:var(--surface);border:var(--stroke) solid var(--accent)}
+.pg .ty{flex:none;width:76px;padding:0 var(--sp-2);text-align:center;border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-12);color:var(--muted)}
+.pg .ty.fix{border-color:var(--danger);color:var(--danger)}
+.pg p{margin:0}
+</style>
+</head>
+<body>
+<div class="pg"><div class="in">
+<div class="bub">
+<div class="ttl"><a class="back" href="../index.html" aria-label="All versions">‹</a><b>v2.0.0</b><span class="n">2026-11-09</span></div>
+<div class="meta"><b>A new MAJOR version</b> (#76): V2 units do not work with <code>v1.0.0</code>. Every unit is moved over USB once by the owner (new partition table and the unit record, <code>docs/users/owner.md</code>); after that, updates come over WiFi.</div>
+</div>
+<div class="sec">
+<div class="sh"><svg class="sic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><b>Highlights</b><span class="n">6</span></div>
+<div class="list"><div class="it"><b>One image for every unit</b>colour, mount orientation and the club logo are put on the unit at delivery; the id comes from the MAC, so host and hotspot names change once.<br><span class="ref">#61</span><span class="ref">#55</span><span class="ref">#66</span></div>
+<div class="it"><b>Update over WiFi</b>from the Einstellungen, one unit at a time: check, download (the slot is erased first, #96), a trial and an automatic return to the old version; the stock bootloader rolls back an image that fails even before it starts.<br><span class="ref">#22</span><span class="ref">#88</span></div>
+<div class="it"><b>Standby with the club logo</b>while no game runs, locked and released from the phone with an iris on the panel; <b>language</b> switched at runtime for all units.<br><span class="ref">#81</span><span class="ref">#121</span><span class="ref">#60</span></div>
+<div class="it"><b>New phone UI</b>the units in the header, the Einstellungen popup, one orange accent.<br><span class="ref">#65</span><span class="ref">#77</span><span class="ref">#121</span></div>
+<div class="it"><b>Engineering mode</b>per unit for the bench: trace over WiFi, snapshots, crash dumps.<br><span class="ref">#58</span><span class="ref">#89</span></div>
+<div class="it"><b>Units of another MAJOR version are refused</b>instead of mixing.<br><span class="ref">#63</span></div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh"><svg class="sic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><b>Fixes since `v2.0.0-rc.1`</b><span class="n">4</span></div>
+<div class="list"><div class="it"><i>Aus</i> from Ready or Pause no longer leaves the time on the panel; a switched-off shot clock shows no number (FIBA Art. 50, #121).</div>
+<div class="it">The panel turns only on agreeing accelerometer readings and retries a sensor that did not answer after a restart, so the picture no longer stays upside down after an update.<br><span class="ref">#112</span></div>
+<div class="it">Every drawing is turned and gamma-corrected in one place; the update ring shows the part still to come in the unit's dimmed colour.<br><span class="ref">#114</span><span class="ref">#122</span></div>
+<div class="it">Popup: the arrow, the shadow and the spacing; a shown code and the sign-out question end with the popup; renaming keeps the phone's keyboard.<br><span class="ref">#121</span></div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh"><svg class="sic warn" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4"/><path d="M12 17.2v.1"/></svg><b>Known limits</b><span class="n">4</span></div>
+<div class="list"><div class="it">No public update site yet: units update from the private repository; the release channel and the LGPL question follow in V3.<br><span class="ref">#64</span><span class="ref">#59</span></div>
+<div class="it">The connect QR code on the real panel scans only sporadically.<br><span class="ref">#2</span></div>
+<div class="it">A slight flicker of the panel during the download remains (#96, accepted).</div>
+<div class="it">Open hardware and by-eye checks of #98 are accepted for this release, not run.</div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh"><svg class="sic ok" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg><b>Hardware verification</b></div>
+<div class="hw">Both V2 units (blue Master, red Slave) on <code>2.0.0-rc.1-4-g51d0787</code>, firmware identical to <code>v2.0.0</code>, on 2026-11-09: hardware suite 19 passed and phone stress passed (S4); a 2.5 h soak with up to 3 phones without an unplanned restart or panic, every command exactly once (S5); 7 power cuts over WiFi with the game kept in all 7 and pairing back in 6–8 s (#124); every screen and the QR code checked by eye (S6).</div>
+</div>
+
+<div class="nav"><a href="../1.0.0/notes.html">‹ v1.0.0</a><a href="../2.1.0/notes.html">v2.1.0 ›</a></div>
+</div></div>
+</body>
+</html>
