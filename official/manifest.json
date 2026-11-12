@@ -1,16 +1,16 @@
 {
  "format": 1,
  "channel": "official",
- "version": "2.2.0",
- "summary": "A beta channel for engineering mode, new release notes pages and fixes in the web UI",
+ "version": "2.3.0",
+ "summary": "Groundwork under the hood, a new licence, and no change to what the panel and the phone show",
  "images": [
   {
    "hw": "mps3-64",
-   "url": "https://smengerl.github.io/shotclock-releases/official/2.2.0/shotclock-mps3-64-2.2.0.bin",
-   "size": 1690768,
-   "sha256": "24cfe0744f78bec039cbd0ef9ba968301b46f7becf7b37799068a94c08a8a809",
+   "url": "https://smengerl.github.io/shotclock-releases/official/2.3.0/shotclock-mps3-64-2.3.0.bin",
+   "size": 1692032,
+   "sha256": "33ada4de5edad745834314ee4b316ba5ad3dbcdb1fee93e46fb7a562daeaa472",
    "min_version": "2.0.0-0"
   }
  ],
- "notes_url": "https://smengerl.github.io/shotclock-releases/official/2.2.0/notes.html"
+ "notes_url": "https://smengerl.github.io/shotclock-releases/official/2.3.0/notes.html"
 }

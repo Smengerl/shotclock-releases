@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Release notes v2.3.0</title>
+<style>
+:root {
+  --bg: #000000; --surface: #141414; --raised: #1f1f1f; --line: #5c5c5c;
+  --text: #ffffff; --muted: #d0d0d0; --accent: #ff9a1a; --on-accent: #000000;
+  --danger: #ff6b6b; --ok: #7cff6b;
+  --guide: #b48cff; --on-guide: #000000;   
+  --shadow: #5c5c5c; --shadow-size: 4px;   
+  --unit: #ff4d4d;   
+  --font-ui: system-ui, sans-serif;   
+  --font-num: "Atkinson Hyperlegible", system-ui, sans-serif;
+  --num-slant: normal;
+  --radius: 12px; --stroke: 1.5px; --label-case: none;
+  
+  --fs-12: 12px; --fs-13: 13px; --fs-14: 14px; --fs-15: 15px; --fs-16: 16px; --fs-18: 18px; --fs-24: 24px; --fs-28: 28px;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+  --touch: 44px; --btn: 80px;
+  
+  --bubble-shadow: drop-shadow(var(--shadow-size) var(--shadow-size) 0 var(--shadow));
+}
+html{touch-action:pan-x pan-y}
+body{margin:0;background:var(--bg)}
+.pg{box-sizing:border-box;min-height:100vh;background:var(--bg);color:var(--text);font:var(--fs-15)/1.5 var(--font-ui);padding:20px var(--sp-4) 40px}
+.pg *{box-sizing:border-box}
+.pg .in{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+.pg a{color:var(--accent)}
+.pg code{font-size:var(--fs-13);background:var(--bg);padding:1px 5px;border-radius:4px}
+.pg .hd{font-size:var(--fs-13);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pg .bub{background:var(--surface);border:var(--stroke) solid var(--line);border-radius:20px;filter:var(--bubble-shadow);overflow:hidden}
+.pg .ttl{display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-3) var(--sp-4);border-bottom:var(--stroke) solid var(--line)}
+.pg .ttl b{flex:1;font-size:var(--fs-18)}
+.pg .ttl .n{font-size:var(--fs-13);color:var(--muted)}
+.pg .ttl.col{display:block;padding:14px var(--sp-4)}
+.pg .ttl.col b{display:block}
+.pg .ttl.col span{font-size:var(--fs-13);color:var(--muted)}
+.pg .back{display:flex;align-items:center;justify-content:center;width:var(--touch);height:var(--touch);margin:-8px 0 -8px -12px;color:var(--text);text-decoration:none;font-size:22px}
+.pg .meta{padding:var(--sp-3) var(--sp-4);font-size:var(--fs-14);color:var(--muted)}
+.pg .meta+.meta{padding-top:0}
+.pg .sic{flex:none;color:var(--accent)}
+.pg .sic.warn{color:var(--danger)}
+.pg .sic.ok{color:var(--ok)}
+.pg .sec{display:flex;flex-direction:column;gap:var(--sp-3)}
+.pg .sh{display:flex;align-items:center;gap:var(--sp-3);padding:0 var(--sp-1)}
+.pg .sh b{flex:1;font-size:var(--fs-18)}
+.pg .sh .n{font-size:var(--fs-13);color:var(--muted)}
+.pg .list{display:flex;flex-direction:column;gap:10px}
+.pg .it{padding:14px;background:var(--raised);border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-14);overflow-wrap:anywhere}
+.pg .it b{display:block;margin-bottom:2px;font-size:var(--fs-15)}
+.pg .ref,.pg .chip{display:inline-block;padding:0 var(--sp-2);border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-12);color:var(--muted)}
+.pg .ref{margin:6px 6px 0 0}
+.pg .chip{border-color:var(--accent);font-weight:600;color:var(--accent)}
+.pg .hw{padding:14px;border:var(--stroke) solid var(--ok);border-radius:var(--radius);font-size:var(--fs-14);background:var(--raised)}
+.pg .nav{display:flex;justify-content:space-between;gap:var(--sp-4);padding:0 var(--sp-1);font-size:var(--fs-14)}
+.pg .tlx{position:relative;padding:6px 0 var(--sp-2)}
+.pg .tlx:before{content:"";position:absolute;left:27px;top:30px;bottom:34px;width:var(--stroke);background:var(--line)}
+.pg .grp{padding:var(--sp-3) var(--sp-4) 2px 52px;font-size:var(--fs-12);font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.pg .row{position:relative;display:flex;align-items:center;gap:var(--sp-3);min-height:64px;padding:var(--sp-3) var(--sp-4) var(--sp-3) 52px;color:var(--text);text-decoration:none}
+.pg .row:before{content:"";position:absolute;left:22px;top:23px;width:11px;height:11px;border-radius:50%;background:var(--surface);border:var(--stroke) solid var(--accent)}
+.pg .row.now:before{background:var(--accent)}
+.pg .row:after{content:"";position:absolute;left:52px;right:var(--sp-4);bottom:0;border-bottom:var(--stroke) solid var(--line)}
+.pg .row.last:after{display:none}
+.pg .tx{flex:1;min-width:0}
+.pg .tx b{display:flex;align-items:center;gap:var(--sp-2);font-size:var(--fs-16)}
+.pg .tx small{display:block;font-size:var(--fs-13);line-height:1.4;color:var(--muted)}
+.pg .op{flex:none;color:var(--muted)}
+.pg .foot{margin:0;font-size:var(--fs-13);color:var(--muted)}
+.pg .tl{position:relative;display:flex;flex-direction:column;gap:10px;padding-left:28px}
+.pg .tl:before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:var(--stroke);background:var(--line)}
+.pg .c{position:relative;display:flex;align-items:flex-start;gap:10px;padding:var(--sp-3);background:var(--raised);border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-14);overflow-wrap:anywhere}
+.pg .c:before{content:"";position:absolute;left:-28px;top:16px;width:11px;height:11px;border-radius:50%;background:var(--surface);border:var(--stroke) solid var(--accent)}
+.pg .ty{flex:none;width:76px;padding:0 var(--sp-2);text-align:center;border:var(--stroke) solid var(--line);border-radius:var(--radius);font-size:var(--fs-12);color:var(--muted)}
+.pg .ty.fix{border-color:var(--danger);color:var(--danger)}
+.pg p{margin:0}
+</style>
+</head>
+<body>
+<div class="pg"><div class="in">
+<div class="bub">
+<div class="ttl"><a class="back" href="../index.html" aria-label="All versions">‹</a><b>v2.3.0</b><span class="n">2026-11-12</span></div>
+<div class="meta">Groundwork under the hood, a new licence, and no change to what the panel and the phone show. Works with <code>v2.0.0</code> and later units (same MAJOR version).</div>
+</div>
+<div class="sec">
+<div class="sh"><svg class="sic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><b>Highlights</b><span class="n">2</span></div>
+<div class="list"><div class="it"><b>New licence</b>the code is under the GNU General Public License, version 3 or later, the print files and pictures under CC BY-SA 4.0. Changed versions that are passed on stay open. The page <i>Lizenzen</i> of the web UI names it, and the source of a release is handed out on request, like the archive for the LGPL libraries. Earlier releases stay under what they were published with.<br><span class="ref">#173</span></div>
+<div class="it"><b>The firmware is split into smaller parts</b>the WiFi set-up, the Master role, the Slave role and the search for a Master are modules of their own, and one module stores a unit's settings. Nothing behaves differently; it is the ground for the reworked communication between units planned for the next MAJOR version.<br><span class="ref">#181</span><span class="ref">#182</span></div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh"><svg class="sic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><b>Fixes and changes</b><span class="n">5</span></div>
+<div class="list"><div class="it">The automatic update no longer takes a unit that runs a development build back to the last official release.<br><span class="ref">#202</span></div>
+<div class="it">For people who build, the bench: a unit comes into service without a phone, <code>python3 -m ship factory --wifi FILE --eng</code> writes its WiFi and engineering mode over USB, and the dev command <code>nvs_erase</code> can keep WiFi, engineering mode and the bench host. The bench finds its units without fixed addresses, and the hardware stages pause the bench server themselves. <code>ship factory --backup</code> and <code>--erase</code> for a real unit.<br><span class="ref">#178</span><span class="ref">#179</span><span class="ref">#168</span></div>
+<div class="it">For people who build, the repository: laid out by purpose, with the tests of the tooling in <code>ship/tests</code>, the evidence of runs in <code>docs/test/evidence/</code> and the command table in <code>firmware/commands.json</code>.<br><span class="ref">#172</span><span class="ref">#176</span></div>
+<div class="it">For people who build, the documentation: one entry page per reader and one description of the architecture, a table of which channel carries which fact between units (<code>docs/dev/contracts/channels.md</code>), and <code>docs/dev/architecture.md</code> lists where the code still differs from the design.<br><span class="ref">#174</span><span class="ref">#175</span><span class="ref">#183</span></div>
+<div class="it">A candidate's release on GitHub is marked as a pre-release.</div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh"><svg class="sic warn" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4"/><path d="M12 17.2v.1"/></svg><b>Known limits</b><span class="n">4</span></div>
+<div class="list"><div class="it">Units on <code>v2.1.1</code> and older read the old release manifest, which stays as it was published: they see nothing newer than 2.1.1, are updated over USB, and do not see the notes of new versions.</div>
+<div class="it">Official images are not signed (#69 is not planned): a unit trusts the TLS connection to one host and the SHA-256 of the image.</div>
+<div class="it">The connect QR code does not scan on the first try in every case.<br><span class="ref">#2</span><span class="ref">#28</span></div>
+<div class="it">The source repository is not public: the source of a release is handed out on request.</div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh"><svg class="sic ok" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg><b>Hardware verification</b><span class="n">5</span></div>
+<div class="hw">On two units (red and blue, Matrix Portal S3 with a 64 × 64 panel), over WiFi, on the firmware of the candidate <code>v2.3.0-rc.1</code>, which is the firmware of this release:</div><div class="hw"><b>S4:</b> hardware suite 17 passed; phone stress 12 minutes with 13 phones: 2905 of 2905 commands executed exactly once, no restart.</div><div class="hw"><b>S5:</b> real soak 2.5 hours with 3 phones and 7 power cuts: 2892 of 2892 commands exactly once, the game kept over 7 of 7 cuts, no unplanned restart, pair available 99.5 % including the cuts.</div><div class="hw"><b>Rows of <code>docs/test/hardware.md</code>:</b> H17 (<code>nvs_erase</code> with <code>keep</code>, on the Master and on the Slave) and H18 (<code>ship factory --wifi --eng</code> over USB). The rows accepted for earlier releases were not run again.</div><div class="hw"><b>S6:</b> the owner looked at the panels, the QR code with a phone and the page <i>Lizenzen</i> of the web UI on the candidate (2026-11-12): fine.</div><div class="hw">Not run on a unit: <code>ship factory --wifi</code> together with <code>--factory</code>.</div>
+</div>
+
+<div class="nav"><a href="../2.2.0/notes.html">‹ v2.2.0</a><span></span></div>
+</div></div>
+</body>
+</html>
