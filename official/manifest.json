@@ -1,16 +1,16 @@
 {
  "format": 1,
  "channel": "official",
- "version": "2.3.0",
- "summary": "Groundwork under the hood, a new licence, and no change to what the panel and the phone show",
+ "version": "3.0.0",
+ "summary": "The units talk to each other over one UDP link instead of an MQTT broker",
  "images": [
   {
    "hw": "mps3-64",
-   "url": "https://smengerl.github.io/shotclock-releases/official/2.3.0/shotclock-mps3-64-2.3.0.bin",
-   "size": 1692032,
-   "sha256": "33ada4de5edad745834314ee4b316ba5ad3dbcdb1fee93e46fb7a562daeaa472",
+   "url": "https://smengerl.github.io/shotclock-releases/official/3.0.0/shotclock-mps3-64-3.0.0.bin",
+   "size": 1670464,
+   "sha256": "f929bd681f711fb014a22941f876965c76ab9b8e6a21ec67b67e6e75a0cda18a",
    "min_version": "2.0.0-0"
   }
  ],
- "notes_url": "https://smengerl.github.io/shotclock-releases/official/2.3.0/notes.html"
+ "notes_url": "https://smengerl.github.io/shotclock-releases/official/3.0.0/notes.html"
 }

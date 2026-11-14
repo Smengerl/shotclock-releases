@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>Beta</title>
+<title>Release notes v3.0.0</title>
 <style>
 :root {
   --bg: #000000; --surface: #141414; --raised: #1f1f1f; --line: #5c5c5c;
@@ -80,12 +80,40 @@ body{margin:0;background:var(--bg)}
 </head>
 <body>
 <div class="pg"><div class="in">
-<div class="hd">Shotclock</div>
 <div class="bub">
-<div class="ttl col"><b>Beta channel</b></div>
-<div class="meta">A test build for units with engineering mode on; only the latest beta is kept.</div>
+<div class="ttl"><a class="back" href="../index.html" aria-label="All versions">‹</a><b>v3.0.0</b><span class="n">2026-11-13</span></div>
+<div class="meta">The units talk to each other over one UDP link instead of an MQTT broker. Nothing changes in how the clock is operated. Works only with units of MAJOR version 3: a unit of v2 refuses a Master of v3 and the other way round, so update every unit of a system, the Slave first.</div>
 </div>
-<p class="foot"><a href="3.0.0-beta.28/notes.html">Notes of 3.0.0-beta.28</a></p>
+<div class="sec">
+<div class="sh"><svg class="sic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><b>Highlights</b><span class="n">4</span></div>
+<div class="list"><div class="it"><b>One link between the units</b>state, report and configuration travel as UDP datagrams with a version, the system and the sender in one envelope. The Master sends every state three times (a broadcast, then unicast copies 25 and 75 ms later to the registered Slaves), so a lost datagram costs nothing. The embedded MQTT broker, PicoMQTT and PubSubClient are gone, and with them the TCP session states and reconnects. The <code>_mqtt._tcp</code> mDNS name stays so that units of v2 recognise the Master and refuse it by version.<br><span class="ref">#184</span><span class="ref">#218</span><span class="ref">#219</span><span class="ref">#220</span><span class="ref">#221</span></div>
+<div class="it"><b>Language, pairing code and phone presence travel inside the state</b>the Master sends, so a Slave that joins late has them at once.<br><span class="ref">#184</span></div>
+<div class="it"><b>A unit is addressed in one way</b>everything about one unit is under <code>/api/units/{id}/…</code>.<br><span class="ref">#185</span></div>
+<div class="it"><b>For people who build</b>every dev command ends in one trace line with its id (<code>eng id=… cmd=… result=…</code>), a snapshot and a crash dump go to the bench host by HTTP <code>PUT</code>, and the bench waits for the lines instead of patterns. The invariant that units only connect outward is stated exactly; two code cycles are gone.<br><span class="ref">#186</span><span class="ref">#203</span><span class="ref">#204</span><span class="ref">#205</span></div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh"><svg class="sic" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><b>Fixes and changes</b><span class="n">10</span></div>
+<div class="list"><div class="it">V3 P4: remove PicoMQTT and PubSubClient<br><span class="ref">#221</span></div>
+<div class="it">V3 P1: the contract link.md and the design of the unit link, FW_MAJOR 3<br><span class="ref">#218</span></div>
+<div class="it">Remove the include cycle between display and display_kit<br><span class="ref">#205</span></div>
+<div class="it">Core includes esp_log.h: a log port of Core, or no logging in Core<br><span class="ref">#204</span></div>
+<div class="it">What does invariant I10 promise? Units listen in more places than it says<br><span class="ref">#203</span></div>
+<div class="it">An empty blob upload is a 400, not a 413<br><span class="ref">#186</span></div>
+<div class="it">Snapshot and crash dump by HTTP PUT instead of UDP datagrams (#186 E3)</div>
+<div class="it">The later copies of a state go by unicast to the registered Slaves<br><span class="ref">#217</span></div>
+<div class="it">Every dev command ends in one trace line with its id<br><span class="ref">#186</span></div>
+<div class="it">Everything about one unit is under /api/units/{id}<br><span class="ref">#185</span></div>
+</div>
+</div>
+
+<div class="sec">
+<div class="sh"><svg class="sic ok" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg><b>Hardware verification</b><span class="n">4</span></div>
+<div class="hw">On two units (red and blue, Matrix Portal S3 with a 64 × 64 panel), over WiFi, on the firmware of <code>main</code> at the time of the run (<code>v2.3.0-28-g4f45382</code> and <code>v2.3.0-31-g38305de</code>), which is the firmware of this release up to documentation:</div><div class="hw"><b>S4:</b> hardware suite 17 passed (62 skipped); phone stress with 13 phones, no restart.</div><div class="hw"><b>S5:</b> real soak 2.5 hours with 3 phones and 7 power cuts: 2890 commands executed of 2892 sent, none twice, none lost (one overtaken by a later one), the game kept over 7 of 7 cuts, no unplanned restart, pair available 98.2 % including the cuts. One recovery after a cut took 127 s (the others 6 to 8 s). 2.9 % of the state datagrams the Mac heard by broadcast were missing; the Slave got every state by the unicast copies.</div><div class="hw"><b>S6:</b> not run, waived by the owner.</div><div class="hw">Rows of <code>docs/test/hardware.md</code> and the open <code>needs-hardware-test</code> issues of the milestone were not all run again.</div>
+</div>
+
+<div class="nav"><a href="../2.3.0/notes.html">‹ v2.3.0</a><span></span></div>
 </div></div>
 </body>
 </html>
